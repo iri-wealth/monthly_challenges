@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
-    <title>All Challenges</title>
-  </head>
-  <body>
-    <ul>
-      {% for month in months %}
-      <li>
-        <a href="{% url 'month_challenge' month=month %}">{{month|title}}</a>
-      </li>
-      {% endfor %}
-    </ul>
-  </body>
-</html>
+{% extends 'base.html'%} {%load static %} {%block css_files%}
+<link
+  rel="stylesheet"
+  href='{% static "challenges/challenges.css" %}'
+/>{%endblock%}
+<title>{% block page_title %}All Challenges{% endblock %}</title>
+
+{% block content %} {%include 'challenges/includes/header.html'%}
+
+<ul>
+  {% for month in months %}
+  <li>
+    <a href="{% url 'month_challenge' month %}">{{month|title}}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
